@@ -1,0 +1,17 @@
+{
+   "maths":{
+      "kalinga":45,
+      "ashan":98,
+      "chamal":67
+   },
+   "sinhala":{
+      "ashan":48,
+      "kalinga":63
+   },
+   "science":{
+      "pooh":65,
+      "kalinga":23,
+      "ashan":64,
+      "chamal":68
+   }
+}

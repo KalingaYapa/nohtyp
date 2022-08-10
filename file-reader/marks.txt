@@ -1,0 +1,10 @@
+name,subject,marks
+kalinga,maths,45
+ashan,sinhala,48
+ashan,maths,98
+kalinga,sinhala,63
+pooh,science,65
+kalinga, science , 23
+ashan , science , 64
+chamal , science , 68
+chamal , maths , 67
