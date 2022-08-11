@@ -40,4 +40,4 @@ for i in range(num_threads):
     count += success_count.get()
 
 duration = time.time_ns() - start
-print(f'Total Duration in ms {duration/1000000} - Success Count {count}')
+print(f'{count} Images Successfully Downloaded  Within {duration/1000000} ms ')
