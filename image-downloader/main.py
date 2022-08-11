@@ -1,7 +1,9 @@
 #https://picsum.photos/id/237/200/300
+import imp
 import time
 import my_thread
-from queue import Queue
+#from queue import Queue
+from multiprocessing import Queue
 
 def get_image_url(count) :
 
@@ -26,18 +28,19 @@ for i in range(0,len(urls),num_threads) :
 start = time.time_ns()
 threads = []
 
-count = 0
-for i,urls in enumerate(new_urls) : 
-    thread = my_thread.ImageDownloaderThread(i, f'Thread-{i}', urls, success_count)
-    thread.start()
-    threads.append(thread)
+if  __name__ == '__main__':
+    count = 0
+    for i,urls in enumerate(new_urls) : 
+        thread = my_thread.ImageDownloaderThread(i, f'Thread-{i}', urls, success_count)
+        thread.start()
+        threads.append(thread)
 
-#Main thread waits here until complete all the running threads
-for thread in threads : 
-    thread.join()
+    #Main thread waits here until complete all the running threads
+    for thread in threads : 
+        thread.join()
 
-for i in range(num_threads):
-    count += success_count.get()
+    for i in range(num_threads):
+        count += success_count.get()
 
-duration = time.time_ns() - start
-print(f'{count} Images Successfully Downloaded  Within {duration/1000000} ms ')
+    duration = time.time_ns() - start
+    print(f'{count} Images Successfully Downloaded  Within {duration/1000000} ms ')

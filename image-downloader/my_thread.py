@@ -1,10 +1,12 @@
 
 
+from operator import imod
 import requests
-from threading import Thread
+#from threading import Thread
+from multiprocessing import Process
 
 
-class ImageDownloaderThread(Thread) : 
+class ImageDownloaderThread(Process) : 
     
     def __init__(self, thread_id, name, urls, success_count) -> None:
         super(ImageDownloaderThread,self).__init__()
