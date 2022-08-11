@@ -29,7 +29,7 @@ for i,urls in enumerate(new_urls) :
     thread.start()
     threads.append(thread)
 
-#Main thread waits here untill complete all the started threads
+#Main thread waits here untill complete all the running threads
 for thread in threads : 
     thread.join()
 
