@@ -6,15 +6,20 @@ from threading import Thread
 
 class ImageDownloaderThread(Thread) : 
     
-    def __init__(self, thread_id, name, urls) -> None:
+    def __init__(self, thread_id, name, urls, success_count) -> None:
         super(ImageDownloaderThread,self).__init__()
         self.thread_id = thread_id
         self.name = name
         self.urls = urls
+        self.success_count = success_count
 
     def run(self) -> None:
+        count = 0
         for i,url in enumerate(self.urls) :
-            self.download_image(url,f'{self.thread_id}-{i}')
+            if self.download_image(url,f'{self.thread_id}-{i}') : 
+                count += 1
+        
+        self.success_count.put(count)
        
     def download_image(self ,url , image_number) :
         response = requests.get(url=url, stream=True)
@@ -23,6 +28,8 @@ class ImageDownloaderThread(Thread) :
             with open(file_name, "wb") as f:
                 f.write(response.content)
 
-            print('Images Successfully Downloaded',file_name)    
+            print('Images Successfully Downloaded',file_name)
+            return True    
         else :
             print('Images Couldn\'t Downloaded')
+            return False
